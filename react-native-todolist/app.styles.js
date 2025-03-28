@@ -6,6 +6,9 @@ export const mainStyles = StyleSheet.create({
     backgroundColor: '#F9F9F9',
     padding: 15,
   },
+  cardItem: {
+    paddingBottom: 15,
+  },
   header: {
     flex: 1,
   },
@@ -14,6 +17,7 @@ export const mainStyles = StyleSheet.create({
   },
   footer: {
     height: 70,
+    backgroundColor: 'white',
   },
 });
 
