@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { mainStyles } from './app.styles';
 import { Header } from './components/header/header';
 import { ToDoCard } from './components/card/todo-card';
+import { TabBottomMenu } from './components/tab-bottom-menu/tab-bottom-menu'
 
 export default function App() {
   const TODO_LIST = [
@@ -19,13 +20,28 @@ export default function App() {
   ];
 
   const [todoList, setTodoList] = useState(TODO_LIST)
+  const [selectedTabName, setSelectedTabName] = useState('all');
   
   function renderToDoList() {
     return todoList.map((todo) => 
       <View key={todo.id} style={ mainStyles.cardItem }>
-        <ToDoCard todo={ todo } />
+        <ToDoCard onPress={updateTodoItem} todo={ todo } />
       </View>
     );
+  }
+
+
+
+  function updateTodoItem(todo) {
+    const updatedTodo = {
+      ...todo,
+      isCompleted: !todo.isCompleted,
+    };
+
+    const updatedTodoList = [ ...todoList ]
+    const indexToUpdate = updatedTodoList.findIndex(t => t.id === updatedTodo.id)
+    updatedTodoList[indexToUpdate] = updatedTodo;
+    setTodoList(updatedTodoList);
   }
 
   return (
@@ -43,7 +59,11 @@ export default function App() {
         </SafeAreaView>
       </SafeAreaProvider>
       <View style={ mainStyles.footer }>
-        <Text>Footer</Text>
+        <TabBottomMenu 
+          selectedTabName={selectedTabName} 
+          onPress={setSelectedTabName}
+          todoList={todoList}
+        /> 
       </View>
     </>
   );
