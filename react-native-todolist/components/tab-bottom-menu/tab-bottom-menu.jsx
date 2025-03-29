@@ -2,6 +2,8 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import { bottomMenuStyles } from './tab-bottom-menu.style';
 
 export function TabBottomMenu({ selectedTabName, onPress, todoList }) {
+  const countByStatus = {};
+
   function getTextStyle(tabName) {
     return {
       fontWeight: "bold",
