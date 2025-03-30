@@ -1,7 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View, ScrollView, Alert } from 'react-native';
 import Dialog from 'react-native-dialog';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import uuid from 'react-native-uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { mainStyles } from './app.styles';
@@ -21,6 +21,7 @@ export default function App() {
   const [isDialogDisplayed, setIsDialogDisplayed] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
+  const scrollViewRef = useRef();
 
   useEffect(() => {
     loadTodoList();
@@ -111,6 +112,10 @@ export default function App() {
     setTodoList([...todoList, newTodo]);
     setIsDialogDisplayed(false);
     setInputValue('');
+
+    setTimeout(() => {
+      scrollViewRef.current.scrollToEnd()
+    }, 300);
   }
 
   function updateTodoItem(todo) {
@@ -152,7 +157,7 @@ export default function App() {
             <Header />
         </View>
         <View style={ mainStyles.body }>
-            <ScrollView>
+            <ScrollView ref={ scrollViewRef }>
               {renderToDoList()}
             </ScrollView>
         </View>
