@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "react-native-todolist",
-    "slug": "react-native-todolist",
+    "slug": "udemy-todo-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
@@ -23,6 +23,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "50a91343-1ac2-40d8-afcd-b6a6764474b8"
+      }
+    },
+    "owner": "macka221",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/50a91343-1ac2-40d8-afcd-b6a6764474b8"
     }
   }
 }
